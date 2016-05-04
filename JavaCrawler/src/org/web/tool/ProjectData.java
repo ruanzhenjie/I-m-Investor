@@ -1,7 +1,7 @@
 package org.web.tool;
 
 
-public class LinkTypeData
+public class ProjectData
 {
 	private int id;
 	/**
@@ -21,21 +21,40 @@ public class LinkTypeData
 	 */
 	private String content;
 	
-	private String interestRate;
+	//private String interestRate;
 	
-	private String rate;
+	private String interestRate;//利率
 	
+	private String investPeriod;//投资期限
+	
+	private String collectionMode;//收益方式
+	
+	private String productAmount;//投资金额
+
+	
+	public String getInvestPeriod() {
+		return investPeriod;
+	}
+	public void setInvestPeriod(String investPeriod) {
+		this.investPeriod = investPeriod;
+	}
+	public String getCollectionMode() {
+		return collectionMode;
+	}
+	public void setCollectionMode(String collectionMode) {
+		this.collectionMode = collectionMode;
+	}
+	public String getProductAmount() {
+		return productAmount;
+	}
+	public void setProductAmount(String productAmount) {
+		this.productAmount = productAmount;
+	}
 	public String getInterestRate() {
 		return interestRate;
 	}
 	public void setInterestRate(String interestRate) {
 		this.interestRate = interestRate;
-	}
-	public String getRate() {
-		return rate;
-	}
-	public void setRate(String rate) {
-		this.rate = rate;
 	}
 	public int getId()
 	{

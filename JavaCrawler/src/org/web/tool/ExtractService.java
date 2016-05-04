@@ -26,14 +26,14 @@ public class ExtractService
 	 * @param rule
 	 * @return
 	 */
-	public static List<LinkTypeData> extract(Rule rule)
+	public static List<ProjectData> extract(Rule rule)
 	{
 
 		// 进行对rule的必要校验
 		validateRule(rule);
 
-		List<LinkTypeData> datas = new ArrayList<LinkTypeData>();
-		LinkTypeData data = null;
+		List<ProjectData> datas = new ArrayList<ProjectData>();
+		ProjectData data = null;
 		try
 		{
 			/**
@@ -95,7 +95,39 @@ public class ExtractService
 			for (Element result : results)
 			{
 				Elements links = result.getElementsByTag("a");
+				
+				
+				if(links.size()<=0)
+					continue;
+				Element link=links.get(0);
+				String linkHref = link.attr("href");
+				String linkText = link.text();
 
+				data = new ProjectData();
+				data.setLinkHref(linkHref);
+				data.setLinkText(linkText);
+
+				
+				Element elerate=result.getElementsByClass("interest-rate").get(0);
+				//data.setInterestRate(elerate.getElementsByClass("product-property-name").text());
+				data.setInterestRate(elerate.getElementsByClass("num-style").text());
+				
+				Element eleperiod=result.getElementsByClass("invest-period").get(0);
+				//data.setInterestRate(elerate.getElementsByClass("product-property-name").text());
+				data.setInvestPeriod(eleperiod.getElementsByTag("p").text());
+				
+				Element elemode=result.getElementsByClass("collection-mode").get(0);
+				//data.setInterestRate(elerate.getElementsByClass("product-property-name").text());
+				data.setCollectionMode(elemode.getElementsByTag("p").text());
+				
+				Element eleamount=result.getElementsByClass("product-amount").get(0);
+				//data.setInterestRate(elerate.getElementsByClass("product-property-name").text());
+				data.setProductAmount(eleamount.getElementsByClass("num-style").text());
+
+				datas.add(data);
+				
+
+				/*
 				for (Element link : links)
 				{
 					//必要的筛选
@@ -113,7 +145,7 @@ public class ExtractService
 
 					datas.add(data);
 				}
-				
+				*/
 				
 			}
 
